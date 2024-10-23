@@ -298,7 +298,7 @@ function appendToDiv(createdDiv, obj) {
   let heightBefore = popupDiv.clientHeight;
   createdDiv.heading.textContent = obj.sourceText;
 
-  createdDiv.meaning.innerHTML = obj.translation;
+  createdDiv.meaning.textContent = obj.translation;
 
   createdDiv.moreInfo.textContent = "More »";
   createdDiv.moreInfo.href = createUrl(
@@ -310,9 +310,9 @@ function appendToDiv(createdDiv, obj) {
   createdDiv.moreInfo.style.display = "block";
 
   if (obj.detectedLang) {
-    createdDiv.type.innerHTML = `<i>Translated from ${getLanguageNameFromCode(
+    createdDiv.type.textContent = `Translated from ${getLanguageNameFromCode(
       obj.detectedLang
-    )} to ${getLanguageNameFromCode(obj.outLang)}</i>`;
+    )} to ${getLanguageNameFromCode(obj.outLang)}`;
     createdDiv.type.style.display = "block";
   }
 
