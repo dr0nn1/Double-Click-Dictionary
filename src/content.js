@@ -86,11 +86,13 @@ function getSelectionInfo(event) {
  * @returns
  */
 function retrieveMeaning(selection, lang, callback) {
+  let tabLang = document.documentElement.lang || navigator.language;
   chrome.runtime.sendMessage(
     {
       action: "translate",
       word: selection,
       language: lang,
+      tablang: getFirstTwoLetters(tabLang),
     },
     (response) => {
       if (chrome.runtime.lastError) {
@@ -327,6 +329,10 @@ function appendToDiv(createdDiv, obj) {
 function getLanguageNameFromCode(code) {
   const languageNames = new Intl.DisplayNames(["en"], { type: "language" });
   return languageNames.of(code);
+}
+
+function getFirstTwoLetters(locale) {
+  return locale.substring(0, 2).toLowerCase();
 }
 
 function createUrl(corpus, detectedLang, lang, word) {
